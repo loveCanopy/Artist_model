@@ -9,6 +9,7 @@
 ## MR 多目录输出
 ### 放到Map中 或Reduce 中
 //将结果输出到多个文件或多个文件夹  
+```
 public MultipleOutputs<Text,Text> mos;
 //创建MultipleOutputs对象  
 public void setup(Context context) throws IOException,InterruptedException {  
@@ -24,7 +25,9 @@ public void setup(Context context) throws IOException,InterruptedException {
 				    	   }else if(output.toString().split(TAB)[0].equals("xiami_mv")){
 				    		   mos.write("xiami", output, new Text(), "Xiami/");
 				    	   }
+```
 ### 放到runLoadMapreduce中
+```
 MultipleOutputs.addNamedOutput(job, "aiqiyi", TextOutputFormat.class,
 Text.class, NullWritable.class);
 MultipleOutputs.addNamedOutput(job, "bilibili", TextOutputFormat.class,
@@ -39,7 +42,9 @@ MultipleOutputs.addNamedOutput(job, "xiami", TextOutputFormat.class,
 Text.class, NullWritable.class);
 MultipleOutputs.addNamedOutput(job, "youku", TextOutputFormat.class,
 Text.class, NullWritable.class);
+```
 ### 设定产生的日期文件夹
+```
 Date dNow = new Date();  
 Date dBefore = new Date();
 Calendar calendar = Calendar.getInstance(); //得到日历
@@ -49,3 +54,4 @@ dBefore = calendar.getTime();   //得到前一天的时间
 SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMdd"); //设置时间格式
 String time = sdf.format(dBefore);    //格式化前一天
 String out = "/user/work/ArtistModel/"+time+"/MV";
+```
